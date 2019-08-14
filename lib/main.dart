@@ -20,7 +20,15 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: FirstRoute(),
+      // Start the app with the "/" named route. In this case, the app starts
+      // on the FirstScreen widget.
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/': (context) => FirstRoute(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/second': (context) => SecondRoute(),
+      },
     );
   }
 }
@@ -37,10 +45,7 @@ class FirstRoute extends StatelessWidget {
           child: Text('Open route'),
           onPressed: () {
             // Navigate to second route when tapped.
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SecondRoute()),
-            );
+            Navigator.pushNamed(context, '/second');
           },
         ),
       ),
